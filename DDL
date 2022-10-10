@@ -1,0 +1,15 @@
+Basics
+
+create database employee;
+use employee;
+create table emp(empno varchar(10) , ename varchar(25),job char(15),deptno int);
+another alternative : 
+create table emp(empno varchar(10) , ename varchar(25),job char(15),deptno numeric);
+alter table emp add(Phoneno int);
+alter table emp add(salary int,age int);
+alter table emp drop Phoneno;
+alter table emp modify job char(20);
+alter table emp rename column ename to empname;
+rename table emp to employ;
+truncate table employ;
+desc employ;

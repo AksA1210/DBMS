@@ -1,0 +1,33 @@
+mysql> create table product_master(productno varchar(6),description varchar(20),profitpercent varchar(6),unitmeasure varchar(10),qty_onhand int,reorderlvl int,sellprice int,costprice int);
+Query OK, 0 rows affected (0.45 sec)
+
+mysql> create table client_master(clientno varchar(6),name varchar(25),address1 varchar(30),address2 varchar(30),city varchar(20),pincode int,state varchar(20),baldue int);
+Query OK, 0 rows affected (1.13 sec)
+
+mysql> create table salesman_master(salesmanno varchar(6),salesmanname varchar(25),address1 varchar(30),address2 varchar(30),city varchar(20),pincode int,state varchar(20));
+Query OK, 0 rows affected (0.84 sec)
+
+mysql> create table student(sno int,sname varchar(20),age int,sdob date,smark1 int,smark2 int,smark3 int);
+Query OK, 0 rows affected (1.01 sec)
+
+mysql> alter table client_master add(telephone int);
+Query OK, 0 rows affected (0.35 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table product_master modify(sellprice int(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(sellprice int(10))' at line 1
+mysql> alter table product_master modify(sellprice integer(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(sellprice integer(10))' at line 1
+mysql> alter table product_master modify sellprice integer(10);
+Query OK, 0 rows affected, 1 warning (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> drop table client_master;
+Query OK, 0 rows affected (0.30 sec)
+
+mysql> rename table salesman_master to sman_master;
+Query OK, 0 rows affected (0.26 sec)
+
+mysql> 
+
+
