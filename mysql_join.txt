@@ -1,0 +1,80 @@
+create database db2; 
+use db2;
+create table country(country_code varchar(10),country_name varchar(100),primary key(country_code));
+insert into country values('IN','India'),('SL','SriLanka'),('PK','Pakistan'),('BN','Bangladesh'),('NP','Nepal');
+create table capital(capital_id varchar(10),country_code varchar(10),capital_name varchar(100),primary key(capital_id),foreign key(country_code) references country(country_code));
+insert into capital values('C1','IN','New Delhi'),('C2','PK','Islamabad'),('C3','NP','Kathmandu');
+
+ select*from country;
++--------------+--------------+
+| country_code | country_name |
++--------------+--------------+
+| BN           | Bangladesh   |
+| IN           | India        |
+| NP           | Nepal        |
+| PK           | Pakistan     |
+| SL           | SriLanka     |
++--------------+--------------+
+
+select*from capital;
++------------+--------------+--------------+
+| capital_id | country_code | capital_name |
++------------+--------------+--------------+
+| C1         | IN           | New Delhi    |
+| C2         | PK           | Islamabad    |
+| C3         | NP           | Kathmandu    |
++------------+--------------+--------------+
+
+
+select* from country inner join capital on country.country_code=capital.country_code;
++--------------+--------------+------------+--------------+--------------+
+| country_code | country_name | capital_id | country_code | capital_name |
++--------------+--------------+------------+--------------+--------------+
+| IN           | India        | C1         | IN           | New Delhi    |
+| PK           | Pakistan     | C2         | PK           | Islamabad    |
+| NP           | Nepal        | C3         | NP           | Kathmandu    |
++--------------+--------------+------------+--------------+--------------+
+
+
+select* from country left join capital on country.country_code=capital.country_code;
++--------------+--------------+------------+--------------+--------------+
+| country_code | country_name | capital_id | country_code | capital_name |
++--------------+--------------+------------+--------------+--------------+
+| BN           | Bangladesh   | NULL       | NULL         | NULL         |
+| IN           | India        | C1         | IN           | New Delhi    |
+| NP           | Nepal        | C3         | NP           | Kathmandu    |
+| PK           | Pakistan     | C2         | PK           | Islamabad    |
+| SL           | SriLanka     | NULL       | NULL         | NULL         |
++--------------+--------------+------------+--------------+--------------+
+
+
+select* from country right join capital on country.country_code=capital.country_code;
++--------------+--------------+------------+--------------+--------------+
+| country_code | country_name | capital_id | country_code | capital_name |
++--------------+--------------+------------+--------------+--------------+
+| IN           | India        | C1         | IN           | New Delhi    |
+| PK           | Pakistan     | C2         | PK           | Islamabad    |
+| NP           | Nepal        | C3         | NP           | Kathmandu    |
++--------------+--------------+------------+--------------+--------------+
+
+select* from country left join capital on country.country_code=capital.country_code union select* from country right join capital on country.country_code=capital.country_code;
++--------------+--------------+------------+--------------+--------------+
+| country_code | country_name | capital_id | country_code | capital_name |
++--------------+--------------+------------+--------------+--------------+
+| BN           | Bangladesh   | NULL       | NULL         | NULL         |
+| IN           | India        | C1         | IN           | New Delhi    |
+| NP           | Nepal        | C3         | NP           | Kathmandu    |
+| PK           | Pakistan     | C2         | PK           | Islamabad    |
+| SL           | SriLanka     | NULL       | NULL         | NULL         |
++--------------+--------------+------------+--------------+--------------+
+
+create table language(country_code varchar(10),country_language varchar(50));
+insert into language values('IN','Hindi'),('PK','Urdu'),('NP','Nepali');
+select* from country inner join capital on country.country_code=capital.country_code inner join language on capital.country_code=language.country_code;
++--------------+--------------+------------+--------------+--------------+--------------+------------------+
+| country_code | country_name | capital_id | country_code | capital_name | country_code | country_language |
++--------------+--------------+------------+--------------+--------------+--------------+------------------+
+| IN           | India        | C1         | IN           | New Delhi    | IN           | Hindi            |
+| PK           | Pakistan     | C2         | PK           | Islamabad    | PK           | Urdu             |
+| NP           | Nepal        | C3         | NP           | Kathmandu    | NP           | Nepali           |
++--------------+--------------+------------+--------------+--------------+--------------+------------------+
