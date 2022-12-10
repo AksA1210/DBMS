@@ -1,0 +1,46 @@
+
+
+1.
+ a.  create view VW_emp as select*from Employee ;
+      select* from VW_emp;
+
+b.   create view VW_SSN as select SuperSSN,DNO from Employee where Sex = 'Female';
+
+c.   select* from VW_emp;
+
+d.  drop view vw_emp;
+      select* from Employee;
+
+
+2.
+ a. 	// factorial.sql
+    	create or replace function get_factorial(No int)
+     	return varchar
+	is
+	fact int :=1;
+	begin
+	for i in 1..No int
+	fact :=fact*i
+	end loop
+	return 'Factorial is  '  || fact ;
+	end;
+	/
+	select get_factorial(5) from dual;
+
+b.	create or replace function max(n1 int, n2 int)
+	return varchar
+	is
+	m int:=0
+	begin
+	if n1>n2 then 
+	m :=n1;
+	else
+	m :=n2;
+	end if;
+	return  'Maximum is  ' ||m;
+	end;
+	/
+	select max(4,9) from dual;
+
+
+	
