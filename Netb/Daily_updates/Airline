@@ -1,0 +1,42 @@
+1412
+
+JFrame forms
+
+1   header_page
+2   login_page
+3   admin_login
+4   user_login
+5   admin_details
+6   user_details
+
+
+Code for each page 
+
+Pg 1
+
+ private void lezzgoActionPerformed(java.awt.event.ActionEvent evt) {                                       
+        // TODO add your handling code here:
+        new login_page().setVisible(true);
+        this.setVisible(false);
+        
+    }                                      
+
+Pg 2
+
+  private void admnloginActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        new admin_login().setVisible(true);
+        this.setVisible(false);
+    }                                         
+
+    private void userloginActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        new user_login().setVisible(true);
+        this.setVisible(false);
+    }                                         
+
+
+Pg 3
+
+
+
