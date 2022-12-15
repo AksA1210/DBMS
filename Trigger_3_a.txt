@@ -1,0 +1,38 @@
+
+Q3.
+a.
+
+SQL> create table Customer(ID Number(38),NAME Varchar(50),ADDRESS Varchar(50),SALARY Number(38),AGE Number(38));
+
+Table created.
+
+SQL> desc Customer;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                       NUMBER(38)
+ NAME                                                VARCHAR2(50)
+ ADDRESS                                         VARCHAR2(50)
+ SALARY                                            NUMBER(38)
+ AGE                                                   NUMBER(38)
+
+
+SQL> insert into Customer values(10978,'Aleena James','Mumbai',90000,28);
+
+1 row created.
+
+SQL> insert into Customer values(21547,'Sidharth Anand','Delhi',67500,35);
+
+1 row created.
+
+SQL> insert into Customer values(17903,'Tanya Malhotra','Pune',85000,31);
+
+1 row created.
+
+SQL> insert into Customer values(78436,'Jaison Thomas','Kochi',95000,25);
+
+1 row created.
+
+SQL> edit salary_difference.sql in plsql;
+
+
+
