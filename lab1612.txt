@@ -1,0 +1,357 @@
+mysql> create table Employee( SSN varchar(20) primary key,Fname varchar(20) not null,Lname varchar(20) not null,Address varchar(30) not null,Sex varchar(15),Salary int default(10000) check (Salary>5000),SuperSSN varchar(20) ,DNO varchar(20));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table Department(DNO varchar(20) primary key,DName varchar(30) not null,MgrSSN varchar(10), MgrStartDate date);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table Project(PNO varchar(20) primary key,PName varchar(30), Plocation varchar(30), DNO varchar(20),constraint DNO_Project foreign key(DNO) references Department(DNO));
+
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> create table Works_on(SSN varchar(20) primary key,PNO varchar(20),Hours int,constraint PNO_Works_on foreign key(PNO) references Project(PNO));
+Query OK, 0 rows affected (0.12 sec)
+
+
+mysql> alter table Employee add(Age int);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>  drop table Project;
+ERROR 3730 (HY000): Cannot drop table 'project' referenced by a foreign key constraint 'PNO_Works_on' on table 'works_on'.
+
+
+mysql> delete from Works_on;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc Department;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| DNO          | varchar(20) | NO   | PRI | NULL    |       |
+| DName        | varchar(30) | NO   |     | NULL    |       |
+| MgrSSN       | varchar(10) | YES  |     | NULL    |       |
+| MgrStartDate | date        | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+mysql> insert into Employee values("e1001","Archana","Suresh","13B,Highway Gardens,Kozhikode","Female",60000,"SP1002","D001",28);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into Employee values("e1002","Justin","Varghese","Rose Villa,Kochi","Male",50000,"SP1001","D003",36);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Employee values("e1003","Meera","Kumar","11B,Arcadia Building,Mumbai","Female",70000,"SP1004","D005",31);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Employee values("e1004","Kailas","Nath","V3,DD Homes,Bangalore","Male",30000,"SP1003","D002",25);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Employee values("e1005","Sara","Khalid","Ashok Nagar,West Delhi","Female",45000,"SP1005","D004",27);
+Query OK, 1 row affected (0.03 sec)
+
+
+
+
+mysql> insert into Department values("D001","Accounts","M1003","2015-09-01");
+Query OK, 1 row affected (0.04 sec)
+
+
+mysql> insert into Department values("D002","HR","M1002","2016-12-05");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Department values("D003","Marketing","M1005","2012-04-04");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Department values("D004","Sales","M1004","2019-08-20");
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Department values("D005","Management","M1001","2017-03-09");
+Query OK, 1 row affected (0.08 sec)
+
+
+
+mysql> insert into DLocation values("D001","Delhi");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into DLocation values("D002","Mumbai");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into DLocation values("D003","Bangalore");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into DLocation values("D004","Chennai");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into DLocation values("D005","Kochi");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Project values("P001","Mobile_Sale","Mumbai","D004");
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into Project values("P002","Business_Management","Delhi","D005");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Project values("P003","TV_Ads","Chennai","D003");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Project values("P004","Expenditure_Check","Bangalore","D001");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Project values("P005","Employee_Survey","Kochi","D002");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Works_on values("S001","P002",9);
+Query OK, 1 row affected (0.03 sec)
+
+mysql>  insert into Works_on values("S002","P005",12);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Works_on values("S003","P001",4);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Works_on values("S004","P003",8);
+Query OK, 1 row affected (0.03 sec)
+
+
+mysql> insert into Works_on values("S005","P004",10);
+Query OK, 1 row affected (0.03 sec)
+
+
+mysql>  select*from Employee;
++-------+---------+----------+-------------------------------+--------+--------+----------+------+------+
+| SSN   | Fname   | Lname    | Address                       | Sex    | Salary | SuperSSN | DNO  | Age  |
++-------+---------+----------+-------------------------------+--------+--------+----------+------+------+
+| e1001 | Archana | Suresh   | 13B,Highway Gardens,Kozhikode | Female |  60000 | SP1002   | D001 |   28 |
+| e1002 | Justin  | Varghese | Rose Villa,Kochi              | Male   |  50000 | SP1001   | D003 |   36 |
+| e1003 | Meera   | Kumar    | 11B,Arcadia Building,Mumbai   | Female |  70000 | SP1004   | D005 |   31 |
+| e1004 | Kailas  | Nath     | V3,DD Homes,Bangalore         | Male   |  30000 | SP1003   | D002 |   25 |
+| e1005 | Sara    | Khalid   | Ashok Nagar,West Delhi        | Female |  45000 | SP1005   | D004 |   27 |
++-------+---------+----------+-------------------------------+--------+--------+----------+------+------+
+5 rows in set (0.00 sec)
+
+mysql> select*from Department;
++------+------------+--------+--------------+
+| DNO  | DName      | MgrSSN | MgrStartDate |
++------+------------+--------+--------------+
+| D001 | Accounts   | M1003  | 2015-09-01   |
+| D002 | HR         | M1002  | 2016-12-05   |
+| D003 | Marketing  | M1005  | 2012-04-04   |
+| D004 | Sales      | M1004  | 2019-08-20   |
+| D005 | Management | M1001  | 2017-03-09   |
++------+------------+--------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select*from DLocation;
++------+-----------+
+| DNO  | DLOC      |
++------+-----------+
+| D001 | Delhi     |
+| D002 | Mumbai    |
+| D003 | Bangalore |
+| D004 | Chennai   |
+| D005 | Kochi     |
++------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select*from Project;
++------+---------------------+-----------+------+
+| PNO  | PName               | Plocation | DNO  |
++------+---------------------+-----------+------+
+| P001 | Mobile_Sale         | Mumbai    | D004 |
+| P002 | Business_Management | Delhi     | D005 |
+| P003 | TV_Ads              | Chennai   | D003 |
+| P004 | Expenditure_Check   | Bangalore | D001 |
+| P005 | Employee_Survey     | Kochi     | D002 |
++------+---------------------+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> select*from Works_on;
++------+------+-------+
+| SSN  | PNO  | Hours |
++------+------+-------+
+| S001 | P002 |     9 |
+| S002 | P005 |    12 |
+| S003 | P001 |     4 |
+| S004 | P003 |     8 |
+| S005 | P004 |    10 |
++------+------+-------+
+5 rows in set (0.00 sec)
+
+
+mysql> update Employee set Salary = 25000 where SSN = 'e1001';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  select*from Employee;
++-------+---------+----------+-------------------------------+--------+--------+----------+------+------+
+| SSN   | Fname   | Lname    | Address                       | Sex    | Salary | SuperSSN | DNO  | Age  |
++-------+---------+----------+-------------------------------+--------+--------+----------+------+------+
+| e1001 | Archana | Suresh   | 13B,Highway Gardens,Kozhikode | Female |  25000 | SP1002   | D001 |   28 |
+| e1002 | Justin  | Varghese | Rose Villa,Kochi              | Male   |  50000 | SP1001   | D003 |   36 |
+| e1003 | Meera   | Kumar    | 11B,Arcadia Building,Mumbai   | Female |  70000 | SP1004   | D005 |   31 |
+| e1004 | Kailas  | Nath     | V3,DD Homes,Bangalore         | Male   |  30000 | SP1003   | D002 |   25 |
+| e1005 | Sara    | Khalid   | Ashok Nagar,West Delhi        | Female |  45000 | SP1005   | D004 |   27 |
++-------+---------+----------+-------------------------------+--------+--------+----------+------+------+
+5 rows in set (0.00 sec)
+
+
+mysql> delete from Employee where SSN = 'e1002';
+Query OK, 1 row affected (0.03 sec)
+
+mysql>  select*from Employee;
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+| SSN   | Fname   | Lname  | Address                       | Sex    | Salary | SuperSSN | DNO  | Age  |
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+| e1001 | Archana | Suresh | 13B,Highway Gardens,Kozhikode | Female |  25000 | SP1002   | D001 |   28 |
+| e1003 | Meera   | Kumar  | 11B,Arcadia Building,Mumbai   | Female |  70000 | SP1004   | D005 |   31 |
+| e1004 | Kailas  | Nath   | V3,DD Homes,Bangalore         | Male   |  30000 | SP1003   | D002 |   25 |
+| e1005 | Sara    | Khalid | Ashok Nagar,West Delhi        | Female |  45000 | SP1005   | D004 |   27 |
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+4 rows in set (0.00 sec)
+
+3.a.
+
+
+mysql> create user 'user1'@'localhost' identified by 'password' ;
+Query OK, 0 rows affected (0.14 sec)
+
+mysql>  grant select on Company.Employee to 'user1'@'localhost';
+Query OK, 0 rows affected (0.09 sec)
+
+mysql>  show grants for 'user'@'localhost';
++--------------------------------------------------------+
+| Grants for user@localhost                              |
++--------------------------------------------------------+
+| GRANT USAGE ON *.* TO `user`@`localhost`               |
+| GRANT SELECT ON `dcl`.`employee` TO `user`@`localhost` |
++--------------------------------------------------------+
+2 rows in set (0.01 sec)
+
+b.
+mysql> revoke select on employee from 'user1'@'localhost';
+Query OK, 0 rows affected (0.04 sec)
+
+
+4.
+
+
+mysql> select Fname from Employee where Fname like '%a_';
++--------+
+| Fname  |
++--------+
+| Kailas |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select count(Sex) from Employee group by Sex;
++------------+
+| count(Sex) |
++------------+
+|          3 |
+|          1 |
++------------+
+2 rows in set (0.00 sec)
+
+mysql> select avg(Salary) from Employee where Sex = 'Female';
++-------------+
+| avg(Salary) |
++-------------+
+|  46666.6667 |
++-------------+
+1 row in set (0.01 sec)
+
+mysql> select sum(Salary)  from Employee where Sex = 'Male';
++-------------+
+| sum(Salary) |
++-------------+
+|       30000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(Salary),min(Salary)  from Employee where Sex = 'Male';
++-------------+-------------+
+| max(Salary) | min(Salary) |
++-------------+-------------+
+|       30000 |       30000 |
++-------------+-------------+
+1 row in set (0.01 sec)
+
+mysql> select* from Employee where Salary between 25000 and 50000;
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+| SSN   | Fname   | Lname  | Address                       | Sex    | Salary | SuperSSN | DNO  | Age  |
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+| e1001 | Archana | Suresh | 13B,Highway Gardens,Kozhikode | Female |  25000 | SP1002   | D001 |   28 |
+| e1004 | Kailas  | Nath   | V3,DD Homes,Bangalore         | Male   |  30000 | SP1003   | D002 |   25 |
+| e1005 | Sara    | Khalid | Ashok Nagar,West Delhi        | Female |  45000 | SP1005   | D004 |   27 |
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> select Lname from Employee where Salary in(30000,40000,50000);
++-------+
+| Lname |
++-------+
+| Nath  |
++-------+
+1 row in set (0.00 sec)
+
+5.
+a.
+update Employee,DLocation set Salary = Salary + Salary*0.25 where Employee.DNO = DLocation.DNO and DLOC = 'Chennai';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+mysql>  select*from Employee;
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+| SSN   | Fname   | Lname  | Address                       | Sex    | Salary | SuperSSN | DNO  | Age  |
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+| e1001 | Archana | Suresh | 13B,Highway Gardens,Kozhikode | Female |  25000 | SP1002   | D001 |   28 |
+| e1003 | Meera   | Kumar  | 11B,Arcadia Building,Mumbai   | Female |  70000 | SP1004   | D005 |   31 |
+| e1004 | Kailas  | Nath   | V3,DD Homes,Bangalore         | Male   |  30000 | SP1003   | D002 |   25 |
+| e1005 | Sara    | Khalid | Ashok Nagar,West Delhi        | Female |  56250 | SP1005   | D004 |   27 |
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+4 rows in set (0.00 sec)
+
+b.
+mysql> select Fname,Plocation from Employee,Project,Works_on where Employee.DNO = Project.DNO and Project.PNO = Works_on.PNO and Hours>5;
++---------+-----------+
+| Fname   | Plocation |
++---------+-----------+
+| Archana | Bangalore |
+| Meera   | Delhi     |
+| Kailas  | Kochi     |
++---------+-----------+
+3 rows in set (0.00 sec)
+
+c.
+mysql> select * from Employee left join Works_on on Employee.SSN = Works_on.SSN;
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+------+------+-------+
+| SSN   | Fname   | Lname  | Address                       | Sex    | Salary | SuperSSN | DNO  | Age  | SSN  | PNO  | Hours |
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+------+------+-------+
+| e1001 | Archana | Suresh | 13B,Highway Gardens,Kozhikode | Female |  25000 | SP1002   | D001 |   28 | NULL | NULL |  NULL |
+| e1003 | Meera   | Kumar  | 11B,Arcadia Building,Mumbai   | Female |  70000 | SP1004   | D005 |   31 | NULL | NULL |  NULL |
+| e1004 | Kailas  | Nath   | V3,DD Homes,Bangalore         | Male   |  30000 | SP1003   | D002 |   25 | NULL | NULL |  NULL |
+| e1005 | Sara    | Khalid | Ashok Nagar,West Delhi        | Female |  56250 | SP1005   | D004 |   27 | NULL | NULL |  NULL |
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+------+------+-------+
+4 rows in set (0.00 sec)
+
+e.
+mysql> select * from Works_on left join Employee on Works_on.SSN = Employee.SSN union select * from Works_on right join Employee on Works_on.SSN = Employee.SSN ;
++------+------+-------+-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+| SSN  | PNO  | Hours | SSN   | Fname   | Lname  | Address                       | Sex    | Salary | SuperSSN | DNO  | Age  |
++------+------+-------+-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+| S001 | P002 |     9 | NULL  | NULL    | NULL   | NULL                          | NULL   |   NULL | NULL     | NULL | NULL |
+| S002 | P005 |    12 | NULL  | NULL    | NULL   | NULL                          | NULL   |   NULL | NULL     | NULL | NULL |
+| S003 | P001 |     4 | NULL  | NULL    | NULL   | NULL                          | NULL   |   NULL | NULL     | NULL | NULL |
+| S004 | P003 |     8 | NULL  | NULL    | NULL   | NULL                          | NULL   |   NULL | NULL     | NULL | NULL |
+| S005 | P004 |    10 | NULL  | NULL    | NULL   | NULL                          | NULL   |   NULL | NULL     | NULL | NULL |
+| NULL | NULL |  NULL | e1001 | Archana | Suresh | 13B,Highway Gardens,Kozhikode | Female |  25000 | SP1002   | D001 |   28 |
+| NULL | NULL |  NULL | e1003 | Meera   | Kumar  | 11B,Arcadia Building,Mumbai   | Female |  70000 | SP1004   | D005 |   31 |
+| NULL | NULL |  NULL | e1004 | Kailas  | Nath   | V3,DD Homes,Bangalore         | Male   |  30000 | SP1003   | D002 |   25 |
+| NULL | NULL |  NULL | e1005 | Sara    | Khalid | Ashok Nagar,West Delhi        | Female |  56250 | SP1005   | D004 |   27 |
++------+------+-------+-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+9 rows in set (0.00 sec)
+
+
+

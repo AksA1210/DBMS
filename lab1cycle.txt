@@ -1,0 +1,117 @@
+create database Company;
+use Company;
+
+create table Employee( SSN varchar(20) primary key,Fname varchar(20) not null,Lname varchar(20) not null,Address varchar(30) not null,Sex varchar(15),Salary int default(10000) check (Salary>5000),SuperSSN varchar(20) ,DNO varchar(20));
+
+create table Department(DNO varchar(20) primary key,DName varchar(30) not null,MgrSSN varchar(10), MgrStartDate date); 
+
+create table DLocation(DNO varchar(20) primary key,DLOC varchar(30) not null);
+
+create table Project(PNO varchar(20) primary key,PName varchar(30), Plocation varchar(30), DNO varchar(20) foreign key references DNO not null);
+
+create table Works_on(SSN varchar(20) primary key,PNO varchar(20) foreign key references PNO not null,Hours int);
+
+
+
+
+
+1. 
+
+ a.   alter table Employee add(Age int);
+ b.   drop table Project;
+ c.   delete from Works_on;
+ d.   desc Department;
+
+2.
+
+a.  insert into Employee values("e1001","Archana","Suresh","13B,Highway Gardens,Kozhikode","Female",60000,"SP1002","D001",28);
+
+    insert into Employee values("e1002","Justin","Varghese","Rose Villa,Kochi","Male",50000,"SP1001","D003",36);
+
+    insert into Employee values("e1003","Meera","Kumar","210,B Block,Arcadia Building,Mumbai","Female",70000,"SP1004","D005",31); 
+
+ insert into Employee values("e1004","Kailas","Nath","V3,DD Homes,Bangalore","Male",30000,"SP1003","D002",25); 
+
+ insert into Employee values("e1005","Sara","Khalid","Ashok Nagar,West Delhi","Female",45000,"SP1005","D004",27); 
+
+
+insert into Department values("D001","Accounts","M1003","01-09-2015");
+insert into Department values("D002","HR","M1002","2016-12-05");
+insert into Department values("D003","Marketing","M1005","2012-04-04");
+insert into Department values("D004","Sales","M1004","2019-08-20");
+insert into Department vlaues("D005","Management","M1001","2017-03-09");
+
+
+insert into DLocation values("D001","Delhi");
+insert into DLocation values("D002","Mumbai");
+insert into DLocation values("D003","Bangalore");
+insert into DLocation values("D004","Chennai");
+insert into DLocation values("D005","Kochi");
+
+insert into Project values("P001","Mobile_Sale","Mumbai","D004");
+insert into Project values("P002","Business_Management","Delhi","D005");
+insert into Project values("P003","TV_Ads","Chennai","D003");
+insert into Project values("P004","Expenditure_Check","Bangalore","D001");
+insert into Project values("P005","Employee_Survey","Kochi","D002");
+
+
+insert into Works_on values("S001","P002",9);
+insert into Works_on values("S002","P005",12);
+insert into Works_on values("S003","P001",4);
+insert into Works_on values("S004","P003",8);
+insert into Works_on values("S005","P004",10);
+
+
+
+
+b.  
+
+  select*from Employee;
+  select*from Department;
+  select*from DLocation;
+  select*from Project;
+  select*from Works_on;
+
+c. 
+ 
+  update Employee set Salary = 25000 where SSN = 'e1001';
+ 
+
+d. 
+
+   delete from Employee where SSN = 'e1002';
+
+3.  
+ a.  create user 'user1'@'localhost' identified by 'password' ; 
+      grant select on Company.Employee to 'user1'@'localhost';
+      show grants for 'user'@'localhost';
+      
+ b.   revoke select on employee from 'user1'@'localhost';
+
+
+4. 
+ a. select Fname from Employee where Fname like '%a_';
+ b. select count(Sex) from Employee group by Sex;
+ c. select avg(Salary) from Employee where Sex = 'Female';
+ d. select sum(Salary)  from Employee where Sex = 'Male';
+ e. select max(Salary),min(Salary)  from Employee where Sex = 'Male';
+ f. select* from Employee where Salary between 25000 and 50000;
+ g. select Lname from Employee where Salary in(30000,40000,50000);
+
+
+5. 
+a.  update Employee,DLocation set Salary = Salary + Salary*0.25 where Employee.DNO = DLocation.DNO and DLOC = 'Chennai';
+
+b. select Fname,Plocation from Employee,Project,Works_on where Employee.DNO = Project.DNO and Project.PNO = Works_on.PNO and Hours>5;
+
+
+c. select * from Employee left join Works_on on Employee.SSN = Works_on.SSN;
+
+d. select * from Works_on right join Employee on Works_on on Works_on.SSN = Employee.SSN;
+
+e. select * from Works_on left join Employee on Works_on.SSN = Employee.SSN union select * from Works_on right join Employee on Works_on.SSN = Employee.SSN ;
+
+ 
+
+
+
