@@ -1,0 +1,15 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Fri Dec 16 14:29:44 2022
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> edit @factorial.sql
+
+
+
+
+
