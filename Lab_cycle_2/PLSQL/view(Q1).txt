@@ -1,0 +1,41 @@
+mysql> create view VW_emp as select*from Employee ;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select* from VW_emp;
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+| SSN   | Fname   | Lname  | Address                       | Sex    | Salary | SuperSSN | DNO  | Age  |
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+| e1001 | Archana | Suresh | 13B,Highway Gardens,Kozhikode | Female |  25000 | SP1002   | D001 |   28 |
+| e1003 | Meera   | Kumar  | 11B,Arcadia Building,Mumbai   | Female |  70000 | SP1004   | D005 |   31 |
+| e1004 | Kailas  | Nath   | V3,DD Homes,Bangalore         | Male   |  30000 | SP1003   | D002 |   25 |
+| e1005 | Sara    | Khalid | Ashok Nagar,West Delhi        | Female |  56250 | SP1005   | D004 |   27 |
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+4 rows in set (0.00 sec)
+
+mysql> create view VW_SSN as select SuperSSN,DNO from Employee where Sex = 'Female';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select* from VW_emp;
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+| SSN   | Fname   | Lname  | Address                       | Sex    | Salary | SuperSSN | DNO  | Age  |
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+| e1001 | Archana | Suresh | 13B,Highway Gardens,Kozhikode | Female |  25000 | SP1002   | D001 |   28 |
+| e1003 | Meera   | Kumar  | 11B,Arcadia Building,Mumbai   | Female |  70000 | SP1004   | D005 |   31 |
+| e1004 | Kailas  | Nath   | V3,DD Homes,Bangalore         | Male   |  30000 | SP1003   | D002 |   25 |
+| e1005 | Sara    | Khalid | Ashok Nagar,West Delhi        | Female |  56250 | SP1005   | D004 |   27 |
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+4 rows in set (0.00 sec)
+
+mysql> drop view vw_emp;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> select* from Employee;
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+| SSN   | Fname   | Lname  | Address                       | Sex    | Salary | SuperSSN | DNO  | Age  |
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+| e1001 | Archana | Suresh | 13B,Highway Gardens,Kozhikode | Female |  25000 | SP1002   | D001 |   28 |
+| e1003 | Meera   | Kumar  | 11B,Arcadia Building,Mumbai   | Female |  70000 | SP1004   | D005 |   31 |
+| e1004 | Kailas  | Nath   | V3,DD Homes,Bangalore         | Male   |  30000 | SP1003   | D002 |   25 |
+| e1005 | Sara    | Khalid | Ashok Nagar,West Delhi        | Female |  56250 | SP1005   | D004 |   27 |
++-------+---------+--------+-------------------------------+--------+--------+----------+------+------+
+4 rows in set (0.00 sec)
