@@ -13,3 +13,17 @@ SQL> edit @factorial.sql
 
 
 
+
+
+
+SQL> set serveroutput on
+SQL> @XEfactorial.sql
+Enter value for n: 5
+old   3: n number := &n;
+new   3: n number := 5;
+120
+
+
+
+
+
