@@ -1,3 +1,9 @@
+mysql> create database Company;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> use Company;
+Database changed
+
 mysql> create table Employee( SSN varchar(20) primary key,Fname varchar(20) not null,Lname varchar(20) not null,Address varchar(30) not null,Sex varchar(15),Salary int default(10000) check (Salary>5000),SuperSSN varchar(20) ,DNO varchar(20));
 Query OK, 0 rows affected (0.06 sec)
 
