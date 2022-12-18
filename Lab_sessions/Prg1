@@ -1,0 +1,10 @@
+---------------------------------------------------------------PROGRAM 1-------------------------------------------------------------------
+
+create table product_master(productno varchar(6),description varchar(20),profitpercent varchar(6),unitmeasure varchar(10),qty_onhand integer(10),reorderlvl integer(6),sellprice integer(8),costprice integer(8));
+create table client_master(clientno varchar(6),name varchar(25),address1 varchar(30),address2 varchar(30),city varchar(20),pincode integer(8),state varchar(20),baldue integer(8);
+create table salesman_master(salesmanno varchar(6),salesmanname varchar(25),address1 varchar(30),address2 varchar(30),city varchar(20),pincode integer(8),state varchar(20));
+create table student(sno int,sname varchar(20),age integer(5),sdob date,smark1 int,smark2 int,smark3 int);
+alter table client_master add(telephone integer(10));
+alter table product_master modify sellprice integer(10);
+drop table client_master;
+rename table salesman_master to sman_master;
