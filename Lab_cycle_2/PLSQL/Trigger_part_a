@@ -1,0 +1,32 @@
+SQL> EDIT M.SQL
+
+SQL> set serveroutput on
+SQL> @m.sql
+Old salary: 68000
+New salary: 73000
+Salary difference: 5000
+Old salary: 35000
+New salary: 40000
+Salary difference: 5000
+Old salary: 12200
+New salary: 17200
+Salary difference: 5000
+Old salary: 45000
+New salary: 50000
+Salary difference: 5000
+Old salary: 60000
+New salary: 65000
+Salary difference: 5000
+Old salary: 25000
+New salary: 30000
+Salary difference: 5000
+
+PL/SQL procedure successfully completed.
+
+SQL>
+
+
+
+
+
+
