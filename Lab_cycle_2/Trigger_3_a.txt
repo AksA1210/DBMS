@@ -35,4 +35,8 @@ SQL> insert into Customer values(78436,'Jaison Thomas','Kochi',95000,25);
 SQL> edit salary_difference.sql in plsql;
 
 
+SQL> @salary_difference.sql
+ 13  /
+
+Warning: Trigger created with compilation errors.
 
