@@ -1,0 +1,17 @@
+declare cursor employee_cur is 
+select id,salary from customer where id = 3
+for update;
+incr_sal number;
+begin
+for employee_rec in employee_cur loop
+if employee_rec.salary < 2000 then
+incr_sal := .15;
+else
+incr_sal := .10;
+end if;  
+update customer set salary = salary + salary * incr_sal where current of employee_cur;
+end loop;
+end;
+/
+
+select* from customer;
