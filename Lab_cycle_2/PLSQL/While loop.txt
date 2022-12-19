@@ -1,0 +1,32 @@
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Mon Dec 19 09:35:49 2022
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+Enter user-name: system
+Enter password:
+Last Successful login time: Mon Dec 19 2022 00:41:05 +05:30
+
+Connected to:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> set serveroutput on
+SQL> edit@numbers.sql
+
+
+
+SQL> @XEnumbers.sql
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+PL/SQL procedure successfully completed.
