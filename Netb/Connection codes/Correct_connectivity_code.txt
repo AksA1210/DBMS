@@ -1,0 +1,21 @@
+private void save_btonActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        String a = user_name.getText();
+        String b = user_password.getText();
+        try{
+            
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = (Connection) DriverManager.getConnection( "jdbc:mysql://localhost:3306/airline","root","root");
+            
+            Statement stm = (Statement) con.createStatement();
+            String query="insert into user_login values('"+a+"','"+b+"')";
+            
+            stm.executeUpdate(query);
+            
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+    }                                         
