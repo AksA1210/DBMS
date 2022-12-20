@@ -1,0 +1,150 @@
+
+SQL> create table Employee(SSN varchar(30),Fname varchar(30),Lname varchar(30),Address varchar(50),Sex varchar(15),Salary number(30),SuperSSN varchar(30),DNO varchar(20));
+
+Table created.
+
+SQL> create table Department(DNO varchar(20),Dname varchar(30),MgrSSN varchar(30),MgrStartDate varchar(20));      
+                   
+Table created.
+
+
+SQL> insert into Employee values('e1001','Archana','Suresh','13B,Highway Gardens,Kozhikode','Female',60000,'SP1002','D001');
+
+1 row created.
+
+SQL> insert into Employee values('e1002','Justin','Varghese','Rose Villa,Kochi','Male',50000,'SP1001','D003');
+
+1 row created.
+
+SQL> insert into Employee values('e1003','Meera','Kumar','11B,Arcadia Building,Mumbai','Female',70000,'SP1004','D005');
+
+1 row created.
+
+SQL> insert into Employee values('e1004','Kailas','Nath','V3,DD Homes,Bangalore','Male',30000,'SP1003','D002');
+
+1 row created.
+
+SQL> insert into Employee values('e1005 ','Sara','Khaild','Ashok Nagar,West Delhi','Female',45000,'SP1005','D004');
+
+1 row created.
+
+SQL> insert into Department values('D001','Accounts','M1003','2015-09-01');
+
+1 row created.
+
+SQL> insert into Department values('D002','HR','M1002','2016-12-05');
+
+1 row created.
+
+SQL> insert into Department values('D003','Marketing','M1005','2012-04-04');
+
+1 row created.
+
+SQL> insert into Department values('D004','Sales','M1004','2019-08-20');
+
+1 row created.
+
+SQL> insert into Department values('D005','Management','M1001','2017-03-09');
+
+1 row created.
+
+SQL> select * from Employee;
+
+SSN                            FNAME
+------------------------------ ------------------------------
+LNAME
+------------------------------
+ADDRESS                                            SEX                 SALARY
+-------------------------------------------------- --------------- ----------
+SUPERSSN                       DNO
+------------------------------ --------------------
+e1001                          Archana
+Suresh
+13B,Highway Gardens,Kozhikode                      Female               60000
+SP1002                         D001
+
+
+SSN                            FNAME
+------------------------------ ------------------------------
+LNAME
+------------------------------
+ADDRESS                                            SEX                 SALARY
+-------------------------------------------------- --------------- ----------
+SUPERSSN                       DNO
+------------------------------ --------------------
+e1002                          Justin
+Varghese
+Rose Villa,Kochi                                   Male                 50000
+SP1001                         D003
+
+
+SSN                            FNAME
+------------------------------ ------------------------------
+LNAME
+------------------------------
+ADDRESS                                            SEX                 SALARY
+-------------------------------------------------- --------------- ----------
+SUPERSSN                       DNO
+------------------------------ --------------------
+e1003                          Meera
+Kumar
+11B,Arcadia Building,Mumbai                        Female               70000
+SP1004                         D005
+
+
+SSN                            FNAME
+------------------------------ ------------------------------
+LNAME
+------------------------------
+ADDRESS                                            SEX                 SALARY
+-------------------------------------------------- --------------- ----------
+SUPERSSN                       DNO
+------------------------------ --------------------
+e1004                          Kailas
+Nath
+V3,DD Homes,Bangalore                              Male                 30000
+SP1003                         D002
+
+
+SSN                            FNAME
+------------------------------ ------------------------------
+LNAME
+------------------------------
+ADDRESS                                            SEX                 SALARY
+-------------------------------------------------- --------------- ----------
+SUPERSSN                       DNO
+------------------------------ --------------------
+e1005                            Sara
+Khaild
+Ashok Nagar,West Delhi                             Female               45000
+SP1005                         D004
+
+
+SQL> select * from Department;
+
+DNO                  DNAME
+-------------------- ------------------------------
+MGRSSN                         MGRSTARTDATE
+------------------------------ --------------------
+D001                 Accounts
+M1003                          2015-09-01
+
+D002                 HR
+M1002                          2016-12-05
+
+D003                 Marketing
+M1005                          2012-04-04
+
+
+DNO                  DNAME
+-------------------- ------------------------------
+MGRSSN                         MGRSTARTDATE
+------------------------------ --------------------
+D004                 Sales
+M1004                          2019-08-20
+
+D005                 Management
+M1001                          2017-03-09
+
+
+SQL>

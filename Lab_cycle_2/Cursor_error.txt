@@ -1,0 +1,42 @@
+
+SQL> declare cursor employee_cur is
+  2  begin
+  3  select DNO,Dname from Department;
+  4  end;
+  5  /
+begin
+*
+ERROR at line 2:
+ORA-06550: line 2, column 1:
+PLS-00103: Encountered the symbol "BEGIN" when expecting one of the following:
+( select <a SQL statement>
+ORA-06550: line 4, column 4:
+PLS-00103: Encountered the symbol "end-of-file" when expecting one of the
+following:
+end not pragma final instantiable persistable order
+overriding static member constructor map
+
+
+SQL> declare cursor employee_update_cur is
+  2  select SSN,Salary,DNO where DNO = 'D001'
+  3  for update;
+  4  begin
+  5  for employee_rec in employee_update_cur loop
+  6  if employee_rec.DNO = 'D001' then
+  7  update Employee set Salary = Salary + Salary*0.5 where current of employee_update_cur;
+  8  end loop;
+  9  end;
+ 10  /
+select SSN,Salary,DNO where DNO = 'D001'
+                      *
+ERROR at line 2:
+ORA-06550: line 2, column 23:
+PL/SQL: ORA-00923: FROM keyword not found where expected
+ORA-06550: line 2, column 1:
+PL/SQL: SQL Statement ignored
+ORA-06550: line 8, column 5:
+PLS-00103: Encountered the symbol "LOOP" when expecting one of the following:
+if
+
+
+SQL>
