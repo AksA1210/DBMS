@@ -1,6 +1,6 @@
 
 SQL> set serveroutput on
-SQL> @XEprime.sql
+SQL> @XEPrime.sql
 Enter value for 1: 7
 old   2:        num number := &1;
 new   2:        num number := 7;
