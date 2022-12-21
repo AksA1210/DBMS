@@ -1,0 +1,9 @@
+
+SQL> set serveroutput on
+SQL> @XEprime.sql
+Enter value for 1: 7
+old   2:        num number := &1;
+new   2:        num number := 7;
+Prime
+
+PL/SQL procedure successfully completed.
